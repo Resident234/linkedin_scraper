@@ -9,3 +9,5 @@ interactive.py
 users.csv
 .vscode
 .dockerignore
+
+users.json
