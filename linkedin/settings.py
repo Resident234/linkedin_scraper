@@ -26,7 +26,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 0.25
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 1
 #CONCURRENT_REQUESTS_PER_IP = 1
@@ -99,3 +99,6 @@ AUTOTHROTTLE_DEBUG = True
 
 # with this a search result page will be paginated all, then the others companies pages
 DEPTH_PRIORITY = -1
+
+
+FEED_EXPORT_ENCODING = "utf-8"
