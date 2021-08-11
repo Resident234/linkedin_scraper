@@ -37,9 +37,9 @@ class SeleniumSpiderMixin:
         self.api_client = CustomLinkedinClient(EMAIL, PASSWORD, debug=True)
 
         # logging in and saving cookies
-        driver = init_chromium(self.selenium_hostname)
-        self.cookies = login(driver)
-        driver.close()
+        self.driver = init_chromium(self.selenium_hostname)
+        self.cookies = login(self.driver)
+        self.driver.close()
 
         super().__init__(**kwargs)
 
