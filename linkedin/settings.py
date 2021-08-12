@@ -1,3 +1,4 @@
+from conf import AWS_ACCESS_KEY, AWS_SECRET_KEY
 # -*- coding: utf-8 -*-
 
 # Scrapy settings for linkedin project
@@ -101,8 +102,8 @@ FEED_EXPORT_ENCODING = "utf-8"
 ###########
 # AWS KEY #
 ###########
-AWS_ACCESS_KEY_ID = 'AKIA3I4NC325S3GVWFFY'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY
+AWS_SECRET_ACCESS_KEY = AWS_SECRET_KEY
 # needed to avoid concurrency using the selenium driver
 #CONCURRENT_ITEMS = 1
 #REACTOR_THREADPOOL_MAXSIZE = 1
