@@ -6,7 +6,8 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
-
+from selenium.webdriver.chrome.options import Options
+import chromedriver_binary
 from conf import EMAIL, PASSWORD
 from linkedin.integration import CustomLinkedinClient
 
@@ -92,16 +93,20 @@ def init_chromium(selenium_host, cookies=None):
 
     print('Initializing chromium, remote url: %s' % selenium_url)
 
-    chrome_options = DesiredCapabilities.CHROME
+    #chrome_options = DesiredCapabilities.CHROME
+    chrome_options = Options()
     # chrome_options.add_argument('--disable-notifications')
 
-    prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    #chrome_options.add_argument("--headless")
+#    prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
 
-    chrome_options['prefs'] = prefs
+    #chrome_options['prefs'] = prefs
 
-    driver = webdriver.Remote(command_executor=selenium_url,
-                              desired_capabilities=chrome_options)
-
+    #driver = webdriver.Remote(command_executor=selenium_url,
+    #                         desired_capabilities=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     if cookies is not None:
         driver.get("https://www.linkedin.com/404error")
         for cookie in cookies:
