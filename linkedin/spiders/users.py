@@ -15,6 +15,9 @@ NETWORK_URL = 'https://www.linkedin.com/mynetwork/invite-connect/connections/'
 
 class UserSpider(SeleniumSpiderMixin, CrawlSpider):
     name = "users"
+    count = 0
+    max_count = 100
+    is_visited = set()
 
     def wait_page_completion(self, driver):
         """
@@ -27,20 +30,28 @@ class UserSpider(SeleniumSpiderMixin, CrawlSpider):
         get_by_xpath_or_none(driver, "//*/div[@class='pv-deferred-area ember-view']", wait_timeout=3)
 
     def start_requests(self):
-        url = 'https://www.linkedin.com/in/ludovica-rain%C3%B2-8a1055113/'
+        url = 'https://www.linkedin.com/in/yuyafukuchi261a861b1/'
         yield scrapy.Request(url, callback=self.parse)
 
     def parse(self, response):
+        if self.count > self.max_count:
+            return
         driver = response.meta.pop('driver')
 
-        print('Scrapy parse - get the names list')
+        print(f"Scrapy parse - get the names list. count: {self.count}")
 
         names = driver.find_elements_by_xpath('//ul[@class="browsemap"]/li/a')
         frontier = []
         for name in names:
             link = name.get_attribute('href')
             profile_id = link.split('/')[-2]
+            if profile_id in self.is_visited:
+                continue
+            self.is_visited.add(profile_id)
             item = extract_contact_info(self.api_client, profile_id)
+            if not item:
+                continue
+
             frontier.append(scrapy.Request(link, callback=self.parse))
             # itemを保存
             yield item
@@ -49,6 +60,7 @@ class UserSpider(SeleniumSpiderMixin, CrawlSpider):
 
         # 新たにリクエスト
         for f in frontier:
+            self.count += 1
             yield f
 
 
