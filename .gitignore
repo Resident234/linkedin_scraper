@@ -10,4 +10,4 @@ users.csv
 .vscode
 .dockerignore
 
-users.json
+*.json
