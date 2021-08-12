@@ -16,7 +16,7 @@ NETWORK_URL = 'https://www.linkedin.com/mynetwork/invite-connect/connections/'
 class UserSpider(SeleniumSpiderMixin, CrawlSpider):
     name = "users"
     count = 0
-    max_count = 100
+    max_count = 10
     is_visited = set()
 
     def wait_page_completion(self, driver):
@@ -38,16 +38,18 @@ class UserSpider(SeleniumSpiderMixin, CrawlSpider):
             return
         driver = response.meta.pop('driver')
 
-        print(f"Scrapy parse - get the names list. count: {self.count}")
+        self.logger.info(f"Scrapy parse - get the names list. count: {self.count}")
 
         names = driver.find_elements_by_xpath('//ul[@class="browsemap"]/li/a')
         frontier = []
         for name in names:
             link = name.get_attribute('href')
             profile_id = link.split('/')[-2]
+            # すでに訪問したことあるprofileをはずす
             if profile_id in self.is_visited:
                 continue
             self.is_visited.add(profile_id)
+
             item = extract_contact_info(self.api_client, profile_id)
             if not item:
                 continue
@@ -61,6 +63,8 @@ class UserSpider(SeleniumSpiderMixin, CrawlSpider):
         # 新たにリクエスト
         for f in frontier:
             self.count += 1
+            #if self.count > self.max_count:
+            #    return
             yield f
 
 

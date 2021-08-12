@@ -21,6 +21,8 @@ LINKEDIN_LOGIN_URL = 'https://www.linkedin.com/login'
 """ Hostname used in the inter-comuication between docker instances,
 from the scrapy controller to the selenium instance."""
 SELENIUM_HOSTNAME = 'selenium'
+PROXY_HOST = 'localhost'
+PROXY_PORT = '8118'
 
 
 class SeleniumSpiderMixin:
@@ -99,6 +101,7 @@ def init_chromium(selenium_host, cookies=None):
 
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
+    #chrome_options.add_argument(f"--proxy-server=http://{PROXY_HOST}:{PROXY_PORT}")
     #chrome_options.add_argument("--headless")
 #    prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
 

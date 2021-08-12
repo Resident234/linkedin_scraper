@@ -9,7 +9,7 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-#BOT_NAME = 'companies'
+BOT_NAME = 'linkedin'
 
 SPIDER_MODULES = ['linkedin.spiders']
 NEWSPIDER_MODULE = 'linkedin.spiders'
@@ -21,7 +21,7 @@ NEWSPIDER_MODULE = 'linkedin.spiders'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 1
+CONCURRENT_REQUESTS = 1
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
@@ -63,17 +63,18 @@ TELNETCONSOLE_ENABLED = False
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = False
+AUTOTHROTTLE_ENABLED = False
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
+AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 # AUTOTHROTTLE_DEBUG = False
 
+AUTOTHROTTLE_DEBUG = True
 #REACTOR_THREADPOOL_MAXSIZE=1
 
 DOWNLOADER_MIDDLEWARES = {
@@ -91,14 +92,22 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.stats.DownloaderStats': 100,
 }
 
+###############
+# OUTPUT FILE #
+###############
+FEED_FORMAT = 'json'
+FEED_URI = 's3://linkedin-users/1.json'
+FEED_EXPORT_ENCODING = "utf-8"
+###########
+# AWS KEY #
+###########
+AWS_ACCESS_KEY_ID = 'AKIA3I4NC325S3GVWFFY'
+AWS_SECRET_ACCESS_KEY = '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'
 # needed to avoid concurrency using the selenium driver
 #CONCURRENT_ITEMS = 1
 #REACTOR_THREADPOOL_MAXSIZE = 1
 
-AUTOTHROTTLE_DEBUG = True
 
 # with this a search result page will be paginated all, then the others companies pages
 DEPTH_PRIORITY = -1
 
-
-FEED_EXPORT_ENCODING = "utf-8"
