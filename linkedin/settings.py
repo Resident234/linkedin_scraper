@@ -16,7 +16,7 @@ SPIDER_MODULES = ['linkedin.spiders']
 NEWSPIDER_MODULE = 'linkedin.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'linkedin (+http://www.yourdomain.com)'
+USER_AGENT = 'linkedin (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -29,8 +29,8 @@ CONCURRENT_REQUESTS = 1
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 1
-#CONCURRENT_REQUESTS_PER_IP = 1
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
+CONCURRENT_REQUESTS_PER_IP = 1
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
@@ -97,13 +97,13 @@ DOWNLOADER_MIDDLEWARES = {
 # OUTPUT FILE #
 ###############
 FEED_FORMAT = 'json'
-FEED_URI = 's3://linkedin-users/1.json'
 FEED_EXPORT_ENCODING = "utf-8"
 ###########
 # AWS KEY #
 ###########
 AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY
 AWS_SECRET_ACCESS_KEY = AWS_SECRET_KEY
+AWS_ENDPOINT_URL = 's3://linkedin-users/1.json'
 # needed to avoid concurrency using the selenium driver
 #CONCURRENT_ITEMS = 1
 #REACTOR_THREADPOOL_MAXSIZE = 1
