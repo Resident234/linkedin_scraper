@@ -1,6 +1,5 @@
 import copy
 import time
-
 from scrapy import Request
 from scrapy import Spider
 
@@ -138,6 +137,7 @@ def filter_experience_dict(elem):
 
 
 def extract_contact_info(api_client, contact_public_id):
+    time.sleep(3)
     contact_profile = api_client.get_profile(contact_public_id)
     #contact_info = api_client.get_profile_contact_info(contact_public_id)
     #if contact_profile.get("geoCountryName") != "Japan":

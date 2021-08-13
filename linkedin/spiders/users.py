@@ -16,7 +16,7 @@ NETWORK_URL = 'https://www.linkedin.com/mynetwork/invite-connect/connections/'
 class UserSpider(SeleniumSpiderMixin, CrawlSpider):
     name = "users"
     count = 0
-    max_count = 10
+    max_count = 1
     is_visited = set()
 
     def wait_page_completion(self, driver):
@@ -67,8 +67,8 @@ class UserSpider(SeleniumSpiderMixin, CrawlSpider):
         # 新たにリクエスト
         for f in frontier:
             self.count += 1
-            #if self.count > self.max_count:
-            #    return
+            if self.count > self.max_count:
+                return
             yield f
 
 
