@@ -39,8 +39,12 @@ class UserSpider(SeleniumSpiderMixin, CrawlSpider):
         driver = response.meta.pop('driver')
 
         self.logger.info(f"Scrapy parse - get the names list. count: {self.count}")
-
-        names = driver.find_elements_by_xpath('//ul[@class="browsemap"]/li/a')
+        try:
+            names = driver.find_elements_by_xpath('//div[@class="pv-browsemap-section"]/ul/li/a')
+        except Exception as e:
+            self.logger.error(e)
+            return
+        #names = driver.find_elements_by_xpath('//ul[@class="browsemap"]/li/a')
         frontier = []
         for name in names:
             link = name.get_attribute('href')
