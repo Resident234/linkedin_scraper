@@ -140,9 +140,9 @@ def filter_experience_dict(elem):
 def extract_contact_info(api_client, contact_public_id):
     contact_profile = api_client.get_profile(contact_public_id)
     #contact_info = api_client.get_profile_contact_info(contact_public_id)
-    if contact_profile.get("geoCountryName") != "Japan":
-        print(f"extract_contact_info skipped because geooCountryName: {contact_profile.get('geoCountryName')}")
-        return
+    #if contact_profile.get("geoCountryName") != "Japan":
+    #    print(f"extract_contact_info skipped because geooCountryName: {contact_profile.get('geoCountryName')}")
+    #    return
     # 不要なカラムの削除
     unused_key = ["profilePicture", "profilePictureOriginalImage"]
     for key in unused_key:
