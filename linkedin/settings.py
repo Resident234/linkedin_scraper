@@ -58,9 +58,9 @@ TELNETCONSOLE_ENABLED = False
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'linkedin.pipelines.SomePipeline': 300,
-# }
+#ITEM_PIPELINES = {
+#    'scrapy.pipelines.files.S3FilesStore': 1
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -98,12 +98,13 @@ DOWNLOADER_MIDDLEWARES = {
 ###############
 FEED_FORMAT = 'json'
 FEED_EXPORT_ENCODING = "utf-8"
+FEED_URI = 's3://linkedin-users/users1.json'
 ###########
 # AWS KEY #
 ###########
 AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY
 AWS_SECRET_ACCESS_KEY = AWS_SECRET_KEY
-AWS_ENDPOINT_URL = 's3://linkedin-users/1.json'
+#AWS_ENDPOINT_URL = 's3://linkedin-users/2.json'
 # needed to avoid concurrency using the selenium driver
 #CONCURRENT_ITEMS = 1
 #REACTOR_THREADPOOL_MAXSIZE = 1
