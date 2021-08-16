@@ -16,7 +16,7 @@ NETWORK_URL = 'https://www.linkedin.com/mynetwork/invite-connect/connections/'
 class UserSpider(SeleniumSpiderMixin, CrawlSpider):
     name = "users"
     count = 0
-    max_count = 1
+    max_count = 100000
     is_visited = set()
 
     def wait_page_completion(self, driver):
