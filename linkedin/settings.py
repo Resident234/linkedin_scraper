@@ -16,7 +16,7 @@ SPIDER_MODULES = ['linkedin.spiders']
 NEWSPIDER_MODULE = 'linkedin.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'linkedin (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3864.0 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -98,7 +98,7 @@ DOWNLOADER_MIDDLEWARES = {
 ###############
 FEED_FORMAT = 'json'
 FEED_EXPORT_ENCODING = "utf-8"
-FEED_URI = 's3://linkedin-users/users1.json'
+FEED_URI = 's3://linkedin-users/users2.json'
 ###########
 # AWS KEY #
 ###########
