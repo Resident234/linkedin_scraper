@@ -14,7 +14,7 @@ from linkedin.integration import CustomLinkedinClient
 """
 number of seconds used to wait the web page's loading.
 """
-WAIT_TIMEOUT = 10
+WAIT_TIMEOUT = 30
 
 LINKEDIN_LOGIN_URL = 'https://www.linkedin.com/login'
 
